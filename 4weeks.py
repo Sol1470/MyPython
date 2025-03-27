@@ -75,5 +75,3 @@ while(True):
         sortList(sum)
     elif act == 6:
         count80Score()
-    
-
