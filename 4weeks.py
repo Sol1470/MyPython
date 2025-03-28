@@ -45,18 +45,34 @@ def printAll():
     print("\n=====================================================")
     print("학번\t이름\t영어\tC-언어\t파이썬\t총점\t평균\t학점\t등수")
     print("=====================================================")
-    for i in range(5):
+    for i in range(studentNum):
         print(f"{studentID[i]}\t{name[i]}\t{english[i]}\t{cLanguage[i]}\t{python[i]}\t{sum[i]}\t{averageScore[i]:.2f}\t{grade[i]}\t{rank[i]}")
-def insertValue():
-    True
+def insertValue(): 
+    temp = int(input("input index :"))
 def deleteValue():
     True
-def searchValue(studentID, name):
-    True
+def searchValue(ID, studentName):
+    for i in range(studentNum):
+        if studentID[ID] == i:
+            index = i
+            break
+        else:
+            index = False
+    if index != False:
+        print(f"ID:{studentID[index]}, Name:{name[index]}, English:{english[index]}, C Language:{cLanguage[index]}, Python:{python[index]}, Total:{sum[index]}, Average:{averageScore[index]}, Grade:{grade[index]}, Rank:{rank[index]}\n")
+    else:
+        print("Wrong Information\n")
 def sortList(sum):
-    True
+    temp = sorted(sum)
+    for i in range(studentNum):
+        print(f"{temp[i]}\t")
+    print("\n")
 def count80Score():
-    True
+    count
+    for i in range(studentNum):
+        if averageScore[i] >= 80:
+            count+=1
+    print(f"Num of Student Over 80 Scores : {count}\n")
 inputValue()
 while(True):
     menu()
@@ -70,7 +86,7 @@ while(True):
     elif act == 3:
         deleteValue()
     elif act == 4:
-        searchValue(studentID, name)
+        searchValue(int(input("student ID:")), int(input("student Name:")))
     elif act == 5:
         sortList(sum)
     elif act == 6:
