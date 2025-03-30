@@ -38,19 +38,67 @@ def calculateGrade():
         else:
             grade.append("E")
 def calculateRank():
-    temp = sorted(averageScore, reverse=True)
-    for i, index in enumerate(temp):
-        rank[index] = i + 1
+    global rank
+    rank = [1] * studentNum
+    for i in range(studentNum):
+        for j in range(studentNum):
+            if averageScore[i] < averageScore[j]:
+                rank[i] += 1
 def printAll():
     print("\n=====================================================")
     print("학번\t이름\t영어\tC-언어\t파이썬\t총점\t평균\t학점\t등수")
     print("=====================================================")
     for i in range(studentNum):
         print(f"{studentID[i]}\t{name[i]}\t{english[i]}\t{cLanguage[i]}\t{python[i]}\t{sum[i]}\t{averageScore[i]:.2f}\t{grade[i]}\t{rank[i]}")
-def insertValue(): 
-    temp = int(input("input index :"))
+def insertValue():
+    global studentNum
+    print("Insert new student information")
+    studentID.append(int(input("Student ID: ")))
+    name.append(input("Student name: "))
+    english.append(int(input("Student's English score: ")))
+    cLanguage.append(int(input("Student's C Language score: ")))
+    python.append(int(input("Student's Python score: ")))
+    
+    total = english[-1] + cLanguage[-1] + python[-1]
+    sum.append(total)
+    avg = total / 3
+    averageScore.append(avg)
+
+    if avg > 90:
+        grade.append("A")
+    elif avg > 80:
+        grade.append("B")
+    elif avg > 70:
+        grade.append("C")
+    elif avg > 60:
+        grade.append("D")
+    else:
+        grade.append("E")
+    
+    # 임시 등수 0으로 추가 (calculateRank 다시 호출 필요)
+    rank.append(0)
+    
+    studentNum += 1
+    calculateRank()
 def deleteValue():
-    True
+    global studentNum
+    del_id = int(input("Enter the student ID to delete: "))
+    if del_id in studentID:
+        idx = studentID.index(del_id)
+        studentID.pop(idx)
+        name.pop(idx)
+        english.pop(idx)
+        cLanguage.pop(idx)
+        python.pop(idx)
+        sum.pop(idx)
+        averageScore.pop(idx)
+        grade.pop(idx)
+        rank.pop(idx)
+        studentNum -= 1
+        calculateRank()
+        print("Deleted successfully.\n")
+    else:
+        print("Student ID not found.\n")
 def searchValue(ID, studentName):
     for i in range(studentNum):
         if studentID[ID] == i:
