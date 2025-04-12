@@ -6,7 +6,9 @@
 
   #작성일: 2025-04-12
 
-  #프로그램 설명: 5명의 학생의 3개의 교과목(영어, C-언어, 파이썬)에 대하여 키보드로 학번, 이름, 각 과목의 점수를 입력을 받는다.
+  #프로그램 설명: 
+  #5명의 학생의 3개의 교과목(영어, C-언어, 파이썬)에 대하여
+  #키보드로부터 학번, 이름, 각 과목의 점수를 입력을 받는다.
   #이후 총점, 평균, 학점, 등수를 계산하는 프로그램.
 
   ###################
@@ -36,7 +38,6 @@ class Student:
 
     def __str__(self):
         return f"{self.studentID}\t{self.name}\t{self.english}\t{self.cLanguage}\t{self.python}\t{self.sum}\t{self.averageScore:.2f}\t{self.grade}\t{self.rank}"
-
 
 class GradeManager:
     def __init__(self):
@@ -156,12 +157,8 @@ class GradeManager:
                 break
             else:
                 print("Invalid input.\n")
-
-
+                
 def main():
     gm = GradeManager()
     gm.inputValue()
     gm.menu()
-
-if __name__ == "__main__":
-    main()
